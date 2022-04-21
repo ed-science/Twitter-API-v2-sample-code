@@ -16,12 +16,9 @@ def create_url():
     # possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets,
     # source, text, and withheld
     tweet_fields = "tweet.fields=lang,author_id"
-    # Be sure to replace your-user-id with your own user ID or one of an authenticating user
-    # You can find a user ID by using the user lookup endpoint
-    id = "your-user-id"
     # You can adjust ids to include a single Tweets.
     # Or you can add to up to 100 comma-separated IDs
-    url = "https://api.twitter.com/2/users/{}/liked_tweets".format(id)
+    url = 'https://api.twitter.com/2/users/your-user-id/liked_tweets'
     return url, tweet_fields
 
 
@@ -41,10 +38,9 @@ def connect_to_endpoint(url, tweet_fields):
     print(response.status_code)
     if response.status_code != 200:
         raise Exception(
-            "Request returned an error: {} {}".format(
-                response.status_code, response.text
-            )
+            f"Request returned an error: {response.status_code} {response.text}"
         )
+
     return response.json()
 
 

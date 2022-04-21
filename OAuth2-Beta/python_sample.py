@@ -18,8 +18,7 @@ def create_url_start():
 
 def spliting():
     url_start = create_url_start()
-    string_split = url_start.split("&state=", 1)[0]
-    return string_split
+    return url_start.split("&state=", 1)[0]
 
 
 def code_challenge():
@@ -27,15 +26,14 @@ def code_challenge():
     timestamp = now.strftime("%m%d%Y%H%M%S")
     random_append = randint(1000, 100000)
     rand_dec = randint(300, 800)
-    ser = "{}{}.{}".format(timestamp, random_append, rand_dec)
-    return ser
+    return f"{timestamp}{random_append}.{rand_dec}"
 
 
 def main():
     chal = code_challenge()
     string_split = spliting()
-    formated = "{}&state={}".format(string_split, chal)
-    final = formated + "&code_challenge=challenge&code_challenge_method=plain"
+    formated = f"{string_split}&state={chal}"
+    final = f"{formated}&code_challenge=challenge&code_challenge_method=plain"
     print(final)
 
 
